@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Dönüştürücü örneği</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:messages/>
+            <h:panelGrid columns="3" width="450">
+                
+                <h:outputLabel value="Dönüşecek tür" style="font-weight: bolder"/>
+                <h:outputLabel value="Girdi alanları" style="font-weight: bolder"/>
+                <h:outputLabel value="Model çıktıları" style="font-weight: bolder"/>  
+
+                <h:outputLabel value="Float ifade"/>
+                <h:inputText value="#{kontrolbean.ffloat}"/>
+                <h:outputLabel value="#{kontrolbean.ffloat}"/>
+                
+                <h:outputLabel value="Boolean ifade"/>
+                <h:selectBooleanCheckbox value="#{kontrolbean.bboolean}"/>
+                <h:outputLabel value="#{kontrolbean.bboolean}"/>
+                
+                <h:outputLabel value="Byte ifade"/>
+                <h:inputText value="#{kontrolbean.bbyte}"/>
+                <h:outputLabel value="#{kontrolbean.bbyte}"/>
+                
+                <h:outputLabel value="Short ifade"/>
+                <h:inputText value="#{kontrolbean.sshort}" converterMessage="+32767 -32768 arası olmalı"/>
+                <h:outputLabel value="#{kontrolbean.sshort}"/>
+                
+                <h:outputLabel value="Karakter ifade"/>
+                <h:inputText value="#{kontrolbean.cchar}"/>
+                <h:outputLabel value="#{kontrolbean.cchar}"/>
+                
+                <h:outputLabel value="Tarih Girdisi"/>
+                <h:inputText value="#{kontrolbean.ddate}" converterMessage="dd/mm/yyyy formatında olmalı.">
+                    <f:convertDateTime pattern="dd/mm/yyyy" locale="tr_TR"/>
+                </h:inputText>
+                <h:outputLabel value="#{kontrolbean.ddate}"/>
+                
+                <h:outputLabel value="Cümle ifade"/>
+                <h:inputTextarea  id="mesaj" value="#{kontrolbean.sstring}" converter="ilkKelimeDonusturucusu">
+                  <!-- veya  <f:converter converterId="ilkKelimeDonusturucusu"/> -->
+                </h:inputTextarea>
+                <h:message for="mesaj" style="color:red"/>
+                <h:outputLabel value="#{kontrolbean.sstring}"/>
+
+            </h:panelGrid>
+
+            <h:commandButton value="Onayla" action="#{kontrolbean.Uyu()}"/>
+        </h:form>
+    </h:body>
+</html>
